@@ -1,11 +1,11 @@
 import "dotenv/config.js";
-
 import express from "express";
 import mongoose from "mongoose";
 import cookieSession from "cookie-session";
 import passport from "passport";
 import "./models/User.js";
 import "./service/passport.js";
+import { authRoutes } from "./routes/authroutes.js";
 
 mongoose.connect(process.env.MONGOURI);
 
@@ -20,6 +20,7 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
+authRoutes(app);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);

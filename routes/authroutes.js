@@ -1,6 +1,6 @@
 import passport from "passport";
 
-module.exports = (app) => {
+export const authRoutes = (app) => {
   app.get(
     "/auth/google",
     passport.authenticate("google", {
@@ -14,7 +14,9 @@ module.exports = (app) => {
     req.logout();
     res.send(req.user);
   });
+
   app.get("/api/current_user", (req, res) => {
     res.send(req.user);
+    console.log(user);
   });
 };
